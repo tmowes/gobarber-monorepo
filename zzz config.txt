@@ -1,0 +1,3 @@
+cross-env CI=true
+
+      "pre-push": "yarn test:staged --bail"
