@@ -1,10 +1,8 @@
 import { Router } from 'express'
+import v1Router from './v1'
 
 const routes = Router()
 
-routes.post('/users', async (request, response) => {
-  const { name, email } = request.body
-  return response.json({ name, email })
-})
+routes.use('/v1', v1Router)
 
 export default routes
