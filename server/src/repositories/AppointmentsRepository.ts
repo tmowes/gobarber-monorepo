@@ -1,4 +1,5 @@
 import { isEqual } from 'date-fns'
+import { CreateAppointmentDTO } from '../dtos/CreateAppointmentDTO'
 import Appointment from '../models/Appointment'
 
 export default class AppointmentsRepository {
@@ -8,8 +9,13 @@ export default class AppointmentsRepository {
     this.appointments = []
   }
 
-  public create(provider: string, date: Date) {
-    const appointment = new Appointment(provider, date)
+  public all() {
+    return this.appointments
+  }
+
+  public create(data: CreateAppointmentDTO) {
+    const { provider, date } = data
+    const appointment = new Appointment({ provider, date })
     this.appointments.push(appointment)
     return appointment
   }
