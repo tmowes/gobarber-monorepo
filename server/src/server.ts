@@ -2,7 +2,7 @@ import express from 'express'
 
 const app = express()
 
-app.get('/', async (request, response) => {
+app.get('/', async (_, response) => {
   return response.json({ message: 'Hello Julius' })
 })
 
