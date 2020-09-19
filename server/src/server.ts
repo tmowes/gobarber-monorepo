@@ -1,10 +1,12 @@
 import express from 'express'
+import { json } from 'body-parser'
+import routes from './routes'
 
 const app = express()
 
-app.get('/', async (_, response) => {
-  return response.json({ message: 'Hello Julius' })
-})
+app.use(json())
+
+app.use(routes)
 
 app.listen(3333, () => {
   // eslint-disable-next-line no-console
