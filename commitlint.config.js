@@ -5,4 +5,4 @@ module.exports = {
     'scope-enum': [2, 'always', ['chore', 'feat', 'test', 'docs', 'fix']],
     'scope-empty': [2, 'never'],
   },
-};
+}
