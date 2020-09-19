@@ -1,4 +1,7 @@
 import { startOfHour } from 'date-fns'
+import { getCustomRepository } from 'typeorm'
+
+import Appointment from '../models/Appointment'
 import AppointmentsRepository from '../repositories/AppointmentsRepository'
 
 interface RequestDTO {
@@ -7,24 +10,18 @@ interface RequestDTO {
 }
 
 export default class CreateAppointmentService {
-  private appointmentsRepository
-
-  constructor(appointmentsRepository: AppointmentsRepository) {
-    this.appointmentsRepository = appointmentsRepository
-  }
-
-  public execute({ provider, date }: RequestDTO) {
+  public async execute({ provider, date }: RequestDTO): Promise<Appointment> {
+    const appointmentsRepository = getCustomRepository(AppointmentsRepository)
     const appointmentDate = startOfHour(date)
-    const appointmentExists = this.appointmentsRepository.findByDate(
-      appointmentDate,
-    )
+    const appointmentExists = appointmentsRepository.findByDate(appointmentDate)
     if (appointmentExists) {
       throw new Error('Appointment already exists')
     }
-    const appointment = this.appointmentsRepository.create({
+    const appointment = appointmentsRepository.create({
       provider,
       date: appointmentDate,
     })
+    await appointmentsRepository.save(appointment)
     return appointment
   }
 }
