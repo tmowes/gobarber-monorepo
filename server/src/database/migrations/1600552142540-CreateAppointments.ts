@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
+import { appointmentTableName } from '../../models/Appointment'
 
 export default class CreateAppointments1600552142540
   implements MigrationInterface {
@@ -6,7 +7,7 @@ export default class CreateAppointments1600552142540
     await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`)
     await queryRunner.createTable(
       new Table({
-        name: 'appointments',
+        name: appointmentTableName,
         columns: [
           {
             name: 'id',
@@ -39,6 +40,6 @@ export default class CreateAppointments1600552142540
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('appointments')
+    await queryRunner.dropTable(appointmentTableName)
   }
 }

@@ -20,6 +20,8 @@
   "plugins": ["react", "prettier", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": "error",
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": "off",
     "no-useless-constructor": "off",
     "class-methods-use-this": "off",
     "import/extensions": [
