@@ -13,7 +13,9 @@ export default class CreateAppointmentService {
   public async execute({ provider, date }: RequestDTO): Promise<Appointment> {
     const appointmentsRepository = getCustomRepository(AppointmentsRepository)
     const appointmentDate = startOfHour(date)
-    const appointmentExists = appointmentsRepository.findByDate(appointmentDate)
+    const appointmentExists = await appointmentsRepository.findByDate(
+      appointmentDate,
+    )
     if (appointmentExists) {
       throw new Error('Appointment already exists')
     }
