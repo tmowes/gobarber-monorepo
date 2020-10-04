@@ -5,3 +5,7 @@ dist
 
 coverage
 ormconfig.json
+
+/server/tmp/*
+
+!/server/tmp/.gitkeep
