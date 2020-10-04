@@ -7,7 +7,7 @@ import {
 import { appointmentTableName } from '../../models/Appointment'
 import { userTableName } from '../../models/User'
 
-export class AlterProviderToProviderID1601126468408
+export default class AlterProviderToProviderID1601126468408
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropColumn(appointmentTableName, 'provider')
