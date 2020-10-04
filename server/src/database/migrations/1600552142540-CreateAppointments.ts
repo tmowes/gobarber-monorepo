@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 import { appointmentTableName } from '../../models/Appointment'
-import { timestampColumns } from './utils'
+import { idColumn, timestampColumns } from './utils'
 
 export default class CreateAppointments1600552142540
   implements MigrationInterface {
@@ -10,15 +10,9 @@ export default class CreateAppointments1600552142540
       new Table({
         name: appointmentTableName,
         columns: [
+          idColumn,
           {
-            name: 'id',
-            type: 'uuid',
-            isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
-          },
-          {
-            name: 'provider',
+            name: 'provider_id',
             type: 'varchar',
           },
           {

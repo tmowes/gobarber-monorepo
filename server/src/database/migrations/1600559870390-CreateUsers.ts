@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 import { userTableName } from '../../models/User'
-import { timestampColumns } from './utils'
+import { idColumn, timestampColumns } from './utils'
 
 export default class CreateUsers1600559870390 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -8,13 +8,7 @@ export default class CreateUsers1600559870390 implements MigrationInterface {
       new Table({
         name: userTableName,
         columns: [
-          {
-            name: 'id',
-            type: 'uuid',
-            isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
-          },
+          idColumn,
           {
             name: 'name',
             type: 'varchar',

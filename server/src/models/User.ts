@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 
+import { Exclude } from 'class-transformer'
+
 export const userTableName = 'users'
 
 @Entity(userTableName)
@@ -14,10 +16,14 @@ export default class User {
   id: string
 
   @Column()
-  provider: string
+  name: string
 
-  @Column('timestamp with time zone')
-  date: Date
+  @Column()
+  email: string
+
+  @Column()
+  @Exclude()
+  password: string
 
   @CreateDateColumn()
   created_at: Date
