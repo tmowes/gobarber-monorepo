@@ -5,7 +5,7 @@ import { getCustomRepository } from 'typeorm'
 import User from '../models/User'
 import UsersRepository from '../repositories/UsersRepository'
 import uploadConfig from '../config/upload'
-import AppError from '../errors/AppError'
+import AppError from '../exceptions/AppError'
 
 interface RequestDTO {
   user_id: string

@@ -1,6 +1,6 @@
 import { startOfHour } from 'date-fns'
 import { getCustomRepository } from 'typeorm'
-import AppError from '../errors/AppError'
+import AppError from '../exceptions/AppError'
 
 import Appointment from '../models/Appointment'
 import AppointmentsRepository from '../repositories/AppointmentsRepository'

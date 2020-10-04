@@ -22,6 +22,12 @@
     "prettier/prettier": "error",
     "camelcase": "off",
     "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_"
+      }
+    ],
     "import/prefer-default-export": "off",
     "no-useless-constructor": "off",
     "no-unused-vars": "off",

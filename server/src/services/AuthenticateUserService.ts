@@ -5,7 +5,7 @@ import { compare } from 'bcryptjs'
 import authConfig from '../config/auth'
 import User from '../models/User'
 import UsersRepository from '../repositories/UsersRepository'
-import AppError from '../errors/AppError'
+import AppError from '../exceptions/AppError'
 
 interface RequestDTO {
   email: string

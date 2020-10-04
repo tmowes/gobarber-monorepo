@@ -3,7 +3,7 @@ import { hash } from 'bcryptjs'
 
 import User from '../models/User'
 import UsersRepository from '../repositories/UsersRepository'
-import AppError from '../errors/AppError'
+import AppError from '../exceptions/AppError'
 
 interface RequestDTO {
   name: string

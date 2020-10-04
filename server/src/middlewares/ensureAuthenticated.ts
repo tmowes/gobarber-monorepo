@@ -2,7 +2,7 @@
 import { verify } from 'jsonwebtoken'
 import { ExpressMiddlewares } from '../@types/middlewares'
 import authConfig from '../config/auth'
-import AppError from '../errors/AppError'
+import AppError from '../exceptions/AppError'
 import { TokenPayload } from './types'
 
 const ensureAuthenticated: ExpressMiddlewares = (request, _, next) => {
