@@ -5,6 +5,7 @@ import { getCustomRepository } from 'typeorm'
 import User from '../models/User'
 import UsersRepository from '../repositories/UsersRepository'
 import uploadConfig from '../config/upload'
+import AppError from '../errors/AppError'
 
 interface RequestDTO {
   user_id: string
@@ -16,7 +17,7 @@ export default class UpdateUserAvatarService {
     const usersRepository = getCustomRepository(UsersRepository)
     const user = await usersRepository.findOne(user_id)
     if (!user) {
-      throw new Error('User is not registered')
+      throw new AppError('User is not registered', 401)
     }
     if (user.avatar) {
       const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar)

@@ -13,8 +13,8 @@ sessionsRouter.post('/', async (request, response) => {
 
     const session = await authenticateUser.execute({ email, password })
     return response.json(classToClass(session))
-  } catch (err) {
-    return response.status(400).json({ message: err.message })
+  } catch ({ status, message }) {
+    return response.status(status).json({ message })
   }
 })
 

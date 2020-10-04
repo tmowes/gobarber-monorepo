@@ -27,8 +27,8 @@ appointmentsRoutes.post('/', async (request, response) => {
       date: parsedDate,
     })
     return response.json(appointment)
-  } catch (err) {
-    return response.status(400).json({ message: err.message })
+  } catch ({ status, message }) {
+    return response.status(status).json({ message })
   }
 })
 

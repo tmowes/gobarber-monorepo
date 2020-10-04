@@ -12,13 +12,11 @@ const upload = multer(uploadConfig)
 usersRoutes.post('/', async (request, response) => {
   try {
     const { name, email, password } = request.body
-
     const createUser = new CreateUserService()
-
     const user = await createUser.execute({ name, email, password })
     return response.json(classToClass(user))
-  } catch (err) {
-    return response.status(400).json({ message: err.message })
+  } catch ({ status, message }) {
+    return response.status(status).json({ message })
   }
 })
 
@@ -35,8 +33,8 @@ usersRoutes.patch(
         filename: file.filename,
       })
       return response.json(classToClass(updatedUser))
-    } catch (err) {
-      return response.status(400).json({ message: err.message })
+    } catch ({ status, message }) {
+      return response.status(status).json({ message })
     }
   },
 )

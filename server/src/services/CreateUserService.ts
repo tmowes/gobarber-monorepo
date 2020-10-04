@@ -3,6 +3,7 @@ import { hash } from 'bcryptjs'
 
 import User from '../models/User'
 import UsersRepository from '../repositories/UsersRepository'
+import AppError from '../errors/AppError'
 
 interface RequestDTO {
   name: string
@@ -15,7 +16,7 @@ export default class CreateUserService {
     const usersRepository = getCustomRepository(UsersRepository)
     const findUserInSameEmail = await usersRepository.findByEmail(email)
     if (findUserInSameEmail) {
-      throw new Error('E-mail already exists')
+      throw new AppError('E-mail already exists')
     }
     const hashedPassword = await hash(password, 8)
     const user = usersRepository.create({

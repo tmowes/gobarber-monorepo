@@ -2,12 +2,13 @@
 import { verify } from 'jsonwebtoken'
 import { ExpressMiddlewares } from '../@types/middlewares'
 import authConfig from '../config/auth'
+import AppError from '../errors/AppError'
 import { TokenPayload } from './types'
 
-const ensureAuthenticated: ExpressMiddlewares = (request, response, next) => {
+const ensureAuthenticated: ExpressMiddlewares = (request, _, next) => {
   const authHeader = request.headers.authorization
   if (!authHeader) {
-    throw new Error('JWT token is missing')
+    throw new AppError('JWT token is missing', 401)
   }
   const [, token] = authHeader.split(' ')
 
@@ -21,7 +22,7 @@ const ensureAuthenticated: ExpressMiddlewares = (request, response, next) => {
     }
     return next()
   } catch (err) {
-    throw new Error('Invalid JWT token')
+    throw new AppError('Invalid JWT token', 401)
   }
 }
 
