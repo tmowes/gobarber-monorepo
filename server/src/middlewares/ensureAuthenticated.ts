@@ -8,7 +8,7 @@ import { TokenPayload } from './types'
 const ensureAuthenticated: ExpressMiddlewares = (request, _, next) => {
   const authHeader = request.headers.authorization
   if (!authHeader) {
-    throw new AppError('JWT token is missing', 401)
+    throw new AppError(request.t('missing_auth_token'), 401)
   }
   const [, token] = authHeader.split(' ')
 
@@ -22,7 +22,7 @@ const ensureAuthenticated: ExpressMiddlewares = (request, _, next) => {
     }
     return next()
   } catch (err) {
-    throw new AppError('Invalid JWT token', 401)
+    throw new AppError(request.t('invalid_token'), 401)
   }
 }
 

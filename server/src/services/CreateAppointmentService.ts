@@ -1,5 +1,6 @@
 import { startOfHour } from 'date-fns'
 import { getCustomRepository } from 'typeorm'
+import BaseService from '../common/base.services'
 import AppError from '../exceptions/AppError'
 
 import Appointment from '../models/Appointment'
@@ -10,7 +11,7 @@ interface RequestDTO {
   date: Date
 }
 
-export default class CreateAppointmentService {
+export default class CreateAppointmentService extends BaseService {
   public async execute({
     provider_id,
     date,
@@ -21,7 +22,7 @@ export default class CreateAppointmentService {
       appointmentDate,
     )
     if (appointmentExists) {
-      throw new AppError('Appointment already exists')
+      throw new AppError(this.t('schedule_unavailable'))
     }
     const appointment = appointmentsRepository.create({
       provider_id,

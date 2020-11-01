@@ -5,3 +5,10 @@ export type ExpressMiddlewares = (
   response: Response,
   next: NextFunction,
 ) => Promise<void> | void
+
+export type ExpressErrorMiddleware = (
+  error: Error,
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) => Response

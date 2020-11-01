@@ -20,7 +20,7 @@ appointmentsRoutes.post('/', async (request, response) => {
 
   const parsedDate = parseISO(date)
 
-  const createAppointment = new CreateAppointmentService()
+  const createAppointment = new CreateAppointmentService(request.t)
 
   const appointment = await createAppointment.execute({
     provider_id,

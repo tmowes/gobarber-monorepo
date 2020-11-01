@@ -1,27 +1,3 @@
 cross-env CI=true
 
       "pre-push": "yarn test:staged --bail"
-
-
-
-
-import { CreateAppointmentDTO } from '../dtos/CreateAppointmentDTO'
-
-
-
-  private appointments: Array<Appointment>
-
-  constructor() {
-    this.appointments = []
-  }
-
-  public all() {
-    return this.appointments
-  }
-
-  public create(data: CreateAppointmentDTO) {
-    const { provider, date } = data
-    const appointment = new Appointment({ provider, date })
-    this.appointments.push(appointment)
-    return appointment
-  }

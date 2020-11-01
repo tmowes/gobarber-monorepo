@@ -12,7 +12,7 @@ const upload = multer(uploadConfig)
 usersRoutes.post('/', async (request, response) => {
   const { name, email, password } = request.body
 
-  const createUser = new CreateUserService()
+  const createUser = new CreateUserService(request.t)
 
   const user = await createUser.execute({ name, email, password })
 
@@ -26,7 +26,7 @@ usersRoutes.patch(
   async (request, response) => {
     const { user, file } = request
 
-    const updateUserAvatar = new UpdateUserAvatarService()
+    const updateUserAvatar = new UpdateUserAvatarService(request.t)
 
     const updatedUser = await updateUserAvatar.execute({
       user_id: user.id,

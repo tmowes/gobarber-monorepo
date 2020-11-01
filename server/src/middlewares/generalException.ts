@@ -1,21 +1,24 @@
-import { Request, Response } from 'express'
+import { ExpressErrorMiddleware } from '../@types/middlewares'
 import AppError from '../exceptions/AppError'
 
-export default function generalException(
-  err: Error,
-  _request: Request,
-  response: Response,
-) {
-  if (err instanceof AppError) {
-    return response.status(err.status).json({
-      status: err.status,
-      message: err.message,
+const generalException: ExpressErrorMiddleware = (
+  error,
+  request,
+  response,
+  _next,
+) => {
+  if (error instanceof AppError) {
+    return response.status(error.status).json({
+      status: error.status,
+      message: error.message,
     })
   }
   // eslint-disable-next-line no-console
-  console.error(err)
+  console.error(error)
   return response.status(500).json({
     status: 500,
-    message: 'Internal server error',
+    message: request.t('internal_server_error'),
   })
 }
+
+export default generalException
