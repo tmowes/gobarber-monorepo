@@ -1,0 +1,9 @@
+{
+  "missing_auth_token": "Token de autenticação está faltando",
+  "invalid_token": "Token de autenticação inválido",
+  "internal_server_error": "Erro interno do servidor",
+  "incorrect_credentials": "Credenciais incorretas, tente novamente.",
+  "schedule_unavailable": "Agendamento já existe",
+  "email_already_registered": "E-mail está em uso, tente outro e-mail.",
+  "user_not_registered": "Usuário não registrado"
+}
